@@ -4,17 +4,30 @@
   "description": "Part 3 exercises for the fullstack open course at the University of Helsinki",
   "main": "index.js",
   "scripts": {
-    "start": "npm index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf dist && cd ./phonebook && npm run build && cp -r dist ../",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "fly logs",
+    "lint": "eslint ."
   },
   "author": "Eric Banzuzi",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "mongoose": "^8.7.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@flydotio/dockerfile": "^0.5.9",
+    "@stylistic/eslint-plugin-js": "^2.9.0",
+    "eslint": "^9.12.0",
+    "globals": "^15.11.0",
     "nodemon": "^3.1.7"
   }
 }
